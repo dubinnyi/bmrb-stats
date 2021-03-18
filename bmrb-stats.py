@@ -71,14 +71,6 @@ def check_entity_is_polypeptide(entry, entity_id):
                 return True
         except:
             continue
-
-        # if 'Entity_ID' in saveframe.keys
-        # ids = saveframe.get_tag('_Entity.Entity_ID')
-        # types = saveframe.get_tag('_Entity.Type')
-        # poly_types = saveframe.get_tag('_Entity.Polymer_type')
-        # for i, t, pt in zip(ids, types, poly_types):
-        #     if i == entity_id and t == 'polymer' and pt == 'polypeptide(L)':
-        #         return True
     return False
 
 
@@ -111,7 +103,6 @@ def parse_isotopic_labeling(lab_string, **kwargs):
     return lab_set
 
 
-
 def print_entity_labeling(entry):
     entry_id = entry.get_tag('_Entry.ID')[0]
     entity_names = entry.get_tag('_Sample_component.Mol_common_name')
@@ -130,6 +121,7 @@ def print_entity_labeling(entry):
                 leb_entity_set =  parse_isotopic_labeling(lab)
                 lab_set = lab_set.union(leb_entity_set)
     return flag_polypeptide, lab_set
+
 
 shifts_data_re = re.compile('(?P<nuc>\d+[A-Z,a-z]+)\s+chemical shifts')
 
@@ -161,7 +153,6 @@ def assignment_strategy_heurystics(lab_nuc_set, shifts_nuc_set):
     ret_string += "Labeled_"+"-".join(labeled_assignment) if labeled_assignment else ''
     ret_string += '_' if ret_string else ''
     ret_string += "Natural_" + "-".join(natural_assignment) if natural_assignment else ''
-    #ret_string = '_'.join([lab_string, nat_string])
     return ret_string
 
 
