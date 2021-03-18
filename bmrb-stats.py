@@ -32,7 +32,7 @@ def expand_id_text_to_list(id_text):
             continue
         else:
             for comma_separated in text.split(','):
-                comma_separated.strip()
+                comma_separated = comma_separated.strip()
                 dash_seperated = comma_separated.split('-')
                 if len(dash_seperated) == 1:
                     id_list.append(int(dash_seperated[0]))
